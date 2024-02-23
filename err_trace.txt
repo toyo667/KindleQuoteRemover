@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\poyo2\Program\Python\kakisute\kindle_quote_remover\modify_kindle_clipBoard.py", line 48, in <module>
+    clipboard_listener()
+  File "C:\Users\poyo2\Program\Python\kakisute\kindle_quote_remover\modify_kindle_clipBoard.py", line 13, in clipboard_listener
+    recent_value = edit_clipboard(recent_value)
+  File "C:\Users\poyo2\Program\Python\kakisute\kindle_quote_remover\modify_kindle_clipBoard.py", line 32, in edit_clipboard
+    with OpenClipboard():
+  File "C:\Users\poyo2\Program\Python\kakisute\kindle_quote_remover\modules\clipboard_opener.py", line 7, in __enter__
+    win32clipboard.OpenClipboard()
+pywintypes.error: (5, 'OpenClipboard', 'アクセスが拒否されました。')

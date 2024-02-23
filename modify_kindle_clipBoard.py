@@ -1,7 +1,7 @@
 import win32clipboard
 import time
 from modules.clipboard_editor import KindleEditor
-
+import traceback
 from modules.clipboard_opener import OpenClipboard
 
 CLIPBOARD_CHECK_INTERVAL_SEC = 1
@@ -10,7 +10,11 @@ CLIPBOARD_CHECK_INTERVAL_SEC = 1
 def clipboard_listener():
     recent_value = ""
     while True:
-        recent_value = edit_clipboard(recent_value)
+        try:
+            recent_value = edit_clipboard(recent_value)
+        except Exception as e:
+            # 偶にクリップボード開けなくなる
+            print(e)
 
         time.sleep(CLIPBOARD_CHECK_INTERVAL_SEC)
 
@@ -44,4 +48,8 @@ def edit_clipboard(recent_value: str) -> str:
 
 
 if __name__ == "__main__":
-    clipboard_listener()
+    try:
+        clipboard_listener()
+    except Exception:
+        with open("./err_trace.txt", "w") as f:
+            f.write(traceback.format_exc())
